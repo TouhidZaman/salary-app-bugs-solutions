@@ -88,7 +88,7 @@ function addRecordHandler() {
     return;
   }
 
-  addRecord(name, !salary);
+  addRecord(name, salary); //bug fixed: salary was false
 }
 
 function addRecord(name, salary) {
