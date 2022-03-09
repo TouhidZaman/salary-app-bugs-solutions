@@ -179,8 +179,9 @@ const showRecordCount = function (data) {
   dlg.classList.remove("hide");
 
   document.getElementById("numberOfRecords").innerText = data.length;
-
-  dlg.dialog({
+  //Bug Fixed: show record count dialog box was not opening
+  // dlg.dialog({ //note: dlg is okay but not works with jquery thats why selector below is used
+  $("#dialog-record-count").dialog({
     buttons: {
       Ok: function () {
         $(this).dialog("close");
