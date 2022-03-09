@@ -136,7 +136,9 @@ const displayLastItemDialog = function (lastItem) {
   document.getElementById("showSalary").innerText = d3.format(",.0f")(
     lastItem.salary
   );
-  dlg.dialog({
+  //Bug Fixed: show last item dialog was not opening
+  // dlg.dialog({ //note: dlg is okay but not works with jquery thats why selector below is used
+  $("#dialog-last-item").dialog({
     buttons: {
       Ok: function () {
         $(this).dialog("close");
