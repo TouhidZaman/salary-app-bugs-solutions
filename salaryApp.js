@@ -80,15 +80,19 @@ const initialCountListener = function () {
 };
 
 function addRecordHandler() {
-  const name = document.getElementById("name").value;
-  const salary = document.getElementById("salary").value;
+  const nameField = document.getElementById("name");
+  const salaryField = document.getElementById("salary");
+  const name = nameField.value;
+  const salary = salaryField.value;
 
-  if (!name || !salary) {
+  if (!name || !salary || isNaN(parseFloat(salary))) {
     showDataError(name, salary);
     return;
   }
 
   addRecord(name, salary); //bug fixed: salary was false
+  nameField.value =  "";
+  salaryField.value = "";
 }
 
 function addRecord(name, salary) {
@@ -151,13 +155,14 @@ const displayLastItemDialog = function (lastItem) {
 };
 
 var showDataError = function (name, salary) {
-  const dlg = document.getElementById("#dialog-error");
+  const dlg = document.getElementById("dialog-error"); //bug fixed: id was incorrect
   dlg.classList.remove("hide");
 
-  toggleErrorMessage("#newName", name, "Who the hell you are talking about!");
-  toggleErrorMessage("#newSalary", salary, "How much that guy make!");
+  toggleErrorMessage("newName", name, "Who the hell you are talking about!");
+  toggleErrorMessage("newSalary", salary, "How much that guy make!");
 
-  dlg.dialog({
+  //Bug Fixed: show error dialog box was not opening
+  $("#dialog-error").dialog({
     width: 600,
     buttons: {
       Ok: function () {
@@ -169,9 +174,9 @@ var showDataError = function (name, salary) {
 
 function toggleErrorMessage(selector, value, msg) {
   if (value) {
-    document.getElementById(selector + "line").style.display = "none";
+    document.getElementById(selector + "Line").style.display = "none"; //bug fixed: id was incorrect
   } else {
-    document.getElementById(selector + "line").style.display = "block";
+    document.getElementById(selector + "Line").style.display = "block"; //bug fixed: id was incorrect
     document.getElementById(selector).innerText = msg;
   }
 }
