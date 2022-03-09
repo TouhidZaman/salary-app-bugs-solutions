@@ -94,8 +94,11 @@ function addRecordHandler() {
 function addRecord(name, salary) {
   const newItem = getRecord(name, salary);
   const id = Math.ceil(Math.random() * 1000000000);
-
-  salary_data[id] = newItem;
+  
+  //bug fixed: fixing id's of previous data to insert new data in the end 
+  salary_data = getChartItems(salary_data); 
+  salary_data[id] = newItem; //inserting new data
+  
   initializeChart(salary_data);
 }
 
